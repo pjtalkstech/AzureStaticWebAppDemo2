@@ -15,7 +15,7 @@
         },
         {
             "route": "/login",
-            "rewrite": "/.auth/login/aad?post_login_redirect_uri=.referrer"
+            "rewrite": "/.auth/login/aad?post_login_redirect_uri=/secured"
         },
         {
             "route": "/logout",
