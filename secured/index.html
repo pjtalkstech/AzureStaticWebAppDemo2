@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <div>
+            <a href="/.auth/logout">Log Out</a>
+            <p>Welcome <span id="userName"></span>to my Secured Space in Azure Static Web App - SECURED</p>
+            <p id="name"></p>
+        </div>
+        <script>
+            async function fetchBackEndApi() {
+                const resp = await fetch(`/api/HttpTrigger1`);
+                const text = await resp.text();
+
+                document.querySelector('#name').textContent = text;
+            }
+            async function getUserInfo() {
+                const response = await fetch('/.auth/me');
+                const payload = await response.json();
+                const { clientPrincipal } = payload;
+
+                document.querySelector('#userName').textContent = clientPrincipal.userDetails;
+                return clientPrincipal;
+            }
+            fetchBackEndApi();
+            getUserInfo();
+            </script>
+    </body>
+</html>
